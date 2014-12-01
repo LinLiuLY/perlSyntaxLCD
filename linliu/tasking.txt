@@ -1,0 +1,4 @@
+1.enter lcd 6 ,print '6'
+2.enter lcd 6 ,print 6 symbol
+3.enter lcd 67 ,print 6's symbol and 7's symbol vertical
+4.enter lcd 6789,print 6's symbol and 7's symbol and 8's symbol and 9's symbol horizontal 

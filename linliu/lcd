@@ -1,0 +1,26 @@
+#!/usr/bin/perl
+use Data::Dumper;
+use LCD;
+
+
+my @numbers_sizes;
+
+foreach my $index (0..$#ARGV) {
+	if(index($ARGV[$index], 's') != -1) {
+        my @number = split(//, $ARGV[$index+1]);
+        my $size = substr $ARGV[$index], 2;
+    	push @numbers_sizes,{
+	    	size => $size,
+	    	numbers => \@number
+	    };	
+	}
+}
+
+print_lcd(\@numbers_sizes);
+
+
+
+
+
+
+
