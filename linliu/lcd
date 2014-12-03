@@ -4,19 +4,75 @@ use LCD;
 
 
 my @numbers_sizes;
+my $number_height = 0;
 
 foreach my $index (0..$#ARGV) {
 	if(index($ARGV[$index], 's') != -1) {
+
         my @number = split(//, $ARGV[$index+1]);
+
         my $size = substr $ARGV[$index], 2;
+
     	push @numbers_sizes,{
 	    	size => $size,
 	    	numbers => \@number
-	    };	
+	    };
+
+        if($size > $number_height){
+        	$number_height = $size;
+        }
 	}
 }
 
-print_lcd(\@numbers_sizes);
+my @arr;
+
+print_lcd();
+
+
+sub print_lcd{
+
+	foreach $number_size(@numbers_sizes){
+
+		my $size = $number_size->{size};
+		my $numbers = $number_size->{numbers};
+
+	    my $line = LCD::print_line($size, $numbers);
+	    
+	    my $big_height = 3 + $number_height*2;
+		my $numbers_length = scalar @{$numbers};
+
+		for my $i(0..$big_height-1){
+			big_line($i,$line->[$i],($size+2)*$numbers_length);
+		}
+
+		
+	}
+
+    print Dumper(\@arr);
+
+    foreach $line(@arr){
+    	print "$line\n";
+    }
+}
+
+
+sub big_line{
+	my $index_line = shift;
+	my $line = shift;
+    my $space = shift; 
+
+	if(!$line){
+		$line = " " x $space;
+	}
+
+	if($arr[$index_line])
+		{
+			$arr[$index_line].=$line;
+		}
+		else{
+			$arr[$index_line] = $line;
+		}
+}
 
 
 
