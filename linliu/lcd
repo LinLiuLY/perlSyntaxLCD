@@ -48,7 +48,7 @@ sub print_lcd{
 		
 	}
 
-    print Dumper(\@arr);
+    # print Dumper(\@arr);
 
     foreach $line(@arr){
     	print "$line\n";
